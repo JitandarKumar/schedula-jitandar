@@ -30,7 +30,7 @@ test/
 
 The following Entity Relationship Diagram (ERD) represents the initial database design for the Doctor Management System based on the provided wireframe.
 
-![ER Diagram](docs/ERD.png)
+![ER Diagram](docs/Doctor-Management-System-ERD.png)
 
 ## Installation
 
