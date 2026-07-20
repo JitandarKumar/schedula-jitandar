@@ -42,7 +42,11 @@ npm install
 
 ```bash
 npm run start:dev
+
 ```
+## Notes
+
+Initial backend project setup completed for Day 1.
 
 ## Author
 
