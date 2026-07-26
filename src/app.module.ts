@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { DoctorModule } from './doctor/doctor.module';
 import { PatientModule } from './patient/patient.module';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -22,7 +23,11 @@ import { PatientModule } from './patient/patient.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: false,
+      migrations: [
+        join(__dirname, 'migrations', '*{.ts,.js}'),
+      ],
+      migrationsRun: false,
     }),
     AuthModule,
     UsersModule,
