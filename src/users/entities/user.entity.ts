@@ -4,8 +4,11 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
+    OneToOne,
 } from 'typeorm';
 import { UserRole } from '../enums/user.role.enum';
+import { Doctor } from '../../doctor/entities/doctor.entity';
+import { Patient } from '../../patient/entities/patient.entity';
 
 @Entity('users')
 export class User {
@@ -42,4 +45,10 @@ export class User {
 
     @UpdateDateColumn()
     updatedAt: Date;
+
+    @OneToOne(() => Doctor, (doctor) => doctor.user)
+    doctor?: Doctor;
+
+    @OneToOne(() => Patient, (patient) => patient.user)
+    patient?: Patient;
 }
