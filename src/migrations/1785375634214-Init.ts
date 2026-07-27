@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class Init1785375634214 implements MigrationInterface {
-  name = 'Init1785375634214';
+    name = 'Init1785375634214';
 
-  public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`
             CREATE TABLE "doctors" (
                 "id" SERIAL NOT NULL,
                 "fullName" character varying NOT NULL,
@@ -20,7 +20,7 @@ export class Init1785375634214 implements MigrationInterface {
             )
         `);
 
-    await queryRunner.query(`
+        await queryRunner.query(`
             ALTER TABLE "doctors"
             ADD CONSTRAINT "FK_doctors_user"
             FOREIGN KEY ("userId")
@@ -28,7 +28,7 @@ export class Init1785375634214 implements MigrationInterface {
             ON DELETE CASCADE
         `);
 
-    await queryRunner.query(`
+        await queryRunner.query(`
             CREATE TABLE "patients" (
                 "id" SERIAL NOT NULL,
                 "fullName" character varying NOT NULL,
@@ -42,20 +42,22 @@ export class Init1785375634214 implements MigrationInterface {
             )
         `);
 
-    await queryRunner.query(`
+        await queryRunner.query(`
             ALTER TABLE "patients"
             ADD CONSTRAINT "FK_patients_user"
             FOREIGN KEY ("userId")
             REFERENCES "users"("id")
             ON DELETE CASCADE
         `);
-  }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`ALTER TABLE "patients" DROP CONSTRAINT "FK_patients_user"`);
-    await queryRunner.query(`DROP TABLE "patients"`);
 
-    await queryRunner.query(`ALTER TABLE "doctors" DROP CONSTRAINT "FK_doctors_user"`);
-    await queryRunner.query(`DROP TABLE "doctors"`);
-  }
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`ALTER TABLE "patients" DROP CONSTRAINT "FK_patients_user"`);
+        await queryRunner.query(`DROP TABLE "patients"`);
+
+        await queryRunner.query(`ALTER TABLE "doctors" DROP CONSTRAINT "FK_doctors_user"`);
+        await queryRunner.query(`DROP TABLE "doctors"`);
+    }
 }
