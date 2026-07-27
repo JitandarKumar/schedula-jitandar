@@ -8,6 +8,8 @@ import { UsersModule } from './users/users.module';
 import { DoctorModule } from './doctor/doctor.module';
 import { PatientModule } from './patient/patient.module';
 import { join } from 'path';
+import { AvailabilityModule } from './availability/availability.module';
+
 
 @Module({
   imports: [
@@ -27,12 +29,13 @@ import { join } from 'path';
       migrations: [
         join(__dirname, 'migrations', '*{.ts,.js}'),
       ],
-      migrationsRun: false,
+      migrationsRun: true,
     }),
     AuthModule,
     UsersModule,
     DoctorModule,
     PatientModule,
+    AvailabilityModule,
   ],
   controllers: [AppController],
   providers: [AppService],
